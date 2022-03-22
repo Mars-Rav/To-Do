@@ -1,36 +1,45 @@
 let todos = [{
-	task,
-	date,
-	id
+    task,
+    date, 
+    id
 }];
 
-todos.push({
-	task: "task",
-	date: "date",
-	id: "id"
-});
+let dlt;
 
-function addtasks(){
-	const text = document.getElementById('task');
-	const task = text.value;
+function addTasks(){
+    const text = document.getElementById('task');
+    const task = text.value;
+    const dateData = document.getElementById('date');
+    const date = dateData.value;
+    const id = new Date().getTime();
 
-	const data = document.getElementById('date');
-	const date = data.value;
+    todos.push({
+        task: task,
+        date: date,
+        id: id
+    });
 
-	todos.push({
-		task: task,
-		date: date,
-	});
-
-	initiateElement(task, date);
+    initiateElements(task, date, id);
 }
 
-function initiateElement(task, date){
-	const taskEl = document.createElement('div');
-	taskEl.innerText = task;
-	list.appendChild(taskEl);
+function dltTask(){
 
-	const dateEl = document.createElement('div');
-	dateEl.innerText = date;
-	dates.appendChild(dateEl);
 }
+
+function initiateElements(task, date, id){
+    let taskElement = document.createElement('div');
+    taskElement.innerText = task;
+    list.appendChild(taskElement);
+
+    let dateElement = document.createElement('div');
+    dateElement.innerText = date;
+    dates.appendChild(dateElement);
+
+    dlt = document.createElement('button');
+    dlt.innerText = "Delete";
+    dlt.id = id;
+    dlt.onclick = dltTask;
+    let dlt_btn = document.getElementById('dlt-btn');
+    dlt_btn.appendChild(dlt);
+}
+
