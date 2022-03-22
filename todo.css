@@ -1,0 +1,86 @@
+body{
+    font-family: 'Roboto Mono', monospace;
+}
+
+.container{
+    display: flex;
+    min-width: 250px;
+    max-width: 900px;
+
+    margin-bottom: 30px;
+}
+
+input{
+    margin-right: 0;
+    flex: 1fr;
+
+    border-style: solid;
+    border-color: #083038;
+
+    min-width: 250px;
+    max-width: 900px;
+    padding: 3px 10px;
+
+    font-family: 'Roboto Mono', monospace;
+    font-size: small;
+    font-weight: bold;
+}
+
+button{
+    margin-left: 0;
+
+    padding: 5px 15px;
+    border-style: solid;
+    /* border-radius: 5px; */
+    border-color: #083038;
+
+    font-style: 'Roboto Mono', monospace;
+    font-size: 13px;
+
+    color: white;
+    cursor: pointer;
+
+    background-color: #083038;
+    transition: all 0.15;
+}
+
+button:hover{
+    opacity: 0.9;
+}
+button:active{
+    opacity: 0.8;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 100px;
+    justify-items: center;
+    /* align-items: center; */
+    row-gap: auto;
+    max-width: 1000px;
+}
+
+#list, #dates{
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 25px;
+    justify-content: center;
+    align-items: center;
+    max-width: 300px;
+    padding: 10px 30px;
+    border-style: solid;
+    /* margin: 10px; */
+    margin-left: 0px;
+}
+
+#dlt-btn{
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 17px;
+}
+
+/* div{
+    border-style: solid;
+    border-width: 2px;
+    border-color: red;
+} */
