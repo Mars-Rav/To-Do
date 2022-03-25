@@ -1,45 +1,89 @@
-let todos = [{
-    task,
-    date, 
-    id
-}];
+let tasks;
+let saved = JSON.parse(localStorage.getItem('Todo'));
 
-let dlt;
+if(Array.isArray(saved)){
+    tasks = saved;
+}else{
+    tasks = [{
+        title: "Hey",
+        id: "" + new Date().getTime()
+    }];
+}
 
-function addTasks(){
-    const text = document.getElementById('task');
-    const task = text.value;
-    const dateData = document.getElementById('date');
-    const date = dateData.value;
-    const id = new Date().getTime();
-
-    todos.push({
-        task: task,
-        date: date,
-        id: id
+function createTodo(text){
+    tasks.push({
+        title: text,
+        id: "" + new Date().getTime()
     });
 
-    initiateElements(task, date, id);
+    saveData();
 }
 
-function dltTask(){
+function deleteTodo(d){
+    tasks = tasks.filter(function(value){
+        if(value.id === d){
+            return false;
+        }else{
+            return true;
+        }
+    });
+
+    saveData();
+}
+
+function saveData(){
+    localStorage.setItem('Todo', JSON.stringify(tasks));
+}
+
+let list = document.getElementById("list");
+
+function initiate(){
+
+    list.innerText = "";
+
+    tasks.forEach(function(value){
+
+        let dlt_btn = document.createElement('button');
+        dlt_btn.onclick = dlt;
+        dlt_btn.id = value.id;
+        dlt_btn.innerText = "Delete";
+
+        let checkbox = document.createElement('input');
+        checkbox.type = "checkbox";
+        checkbox.name = "name";
+        checkbox.value = "value";
+        checkbox.id = "Checkbox";
+        checkbox.style.display = "inline-block";
+
+        let task = document.createElement('div');
+        task.style.display = "inline-block";
+        task.innerText = value.title;
+
+        list.appendChild(checkbox);
+        list.appendChild(task);
+        list.appendChild(dlt_btn);
+
+    });
 
 }
 
-function initiateElements(task, date, id){
-    let taskElement = document.createElement('div');
-    taskElement.innerText = task;
-    list.appendChild(taskElement);
+initiate();
 
-    let dateElement = document.createElement('div');
-    dateElement.innerText = date;
-    dates.appendChild(dateElement);
+function add(){
 
-    dlt = document.createElement('button');
-    dlt.innerText = "Delete";
-    dlt.id = id;
-    dlt.onclick = dltTask;
-    let dlt_btn = document.getElementById('dlt-btn');
-    dlt_btn.appendChild(dlt);
+    let input = document.getElementById("input");
+    let text = input.value;
+
+    createTodo(text);
+    initiate();
 }
 
+function dlt(event){
+
+    console.log(event);
+    const dltBtn = event.target;
+    const d = dltBtn.id
+
+    deleteTodo(d);
+    initiate();
+}
